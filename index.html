@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ryan Sweet’s Photographic Emporium</title>
+  <link rel="icon" type="image/png" href="images/camera.png">
+
+  <style>
+    body {
+      background-color: #dcd5ba;
+      color: #2f2a25;
+      font-family: "Times New Roman", serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: #3a3d36;
+      background-color: #b6ab8b;
+      padding: 10px;
+      border: 3px dashed #4d4f46;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #37492d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .gallery-container {
+      margin-top: 20px;
+    }
+
+    #gallery-img {
+      width: 300px;
+      height: 200px;
+      border: 4px ridge #839073;
+      background-color: #e2e2dc;
+    }
+
+    .description-box {
+      background-color: #e9e6d3;
+      border: 1px solid #767f6b;
+      width: 320px;
+      margin: 10px auto;
+      padding: 5px;
+      font-size: 14px;
+      color: #3a3d36;
+    }
+
+    button {
+      margin: 10px;
+      padding: 6px 12px;
+      font-family: "Times New Roman", serif;
+      background-color: #a8b89a;
+      border: 2px outset #555;
+      color: #2c2c2c;
+      cursor: pointer;
+    }
+
+    details {
+      margin-top: 20px;
+      background-color: #e9e6d3;
+      border: 2px dotted #767f6b;
+      padding: 10px;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    summary {
+      font-weight: bold;
+      color: #3c4c38;
+    }
+
+    .link-list {
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    .link-list a {
+      color: #37492d;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ryan Sweet’s Photographic Emporium</h1>
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="about.html">About</a> |
+    <a href="social.html">Socials</a>
+  </nav>
+  <div style="text-align: center; margin-top: 1.5em;">
+  <p>Current Camera ==> <i>Canon PowerShot SX710 HS</i></p>
+  <hr style="width: 50%; margin: 1em auto;">
+  <h2>Photo Gallery</h2>
+  </div>
+  <div class="gallery-container">
+    <img id="gallery-img" src="images/sunrise1.JPG" alt="Photo Gallery">
+    <div class="description-box" id="photo-description">A soft sunrise at Mt. Haleakala, Hawaii</div>
+    <br>
+    <button onclick="prevPhoto()">Prev</button>
+    <button onclick="nextPhoto()">Next</button>
+  </div>
+
+  <details>
+  <summary>📂 View All Image Links</summary>
+  <div class="link-list">
+    <!-- Hawaii -->
+    <p><a href="images/sunrise1.JPG" target="_blank">sunrise1.JPG</a></p>
+    <p><a href="images/waterfall1.JPG" target="_blank">waterfall1.JPG</a></p>
+    <p><a href="images/blacksand1.JPG" target="_blank">blacksand1.JPG</a></p>
+    <p><a href="images/trees1.JPG" target="_blank">trees1.JPG</a></p>
+    <p><a href="images/terrain1.JPG" target="_blank">terrain1.JPG</a></p>
+    <p><a href="images/cave1.JPG" target="_blank">cave1.JPG</a></p>
+    <p><a href="images/bamboo1.JPG" target="_blank">bamboo1.JPG</a></p>
+    <p><a href="images/terrain2.JPG" target="_blank">terrain2.JPG</a></p>
+    <p><a href="images/boat1.JPG" target="_blank">boat1.JPG</a></p>
+
+    <p><a href="images/sun1.JPG" target="_blank">sun1.JPG</a></p>
+    <p><a href="images/acadialake1.JPG" target="_blank">acadialake1.JPG</a></p>
+    <p><a href="images/fence1.JPG" target="_blank">fence1.JPG</a></p>
+    <p><a href="images/creek1.JPG" target="_blank">creek1.JPG</a></p>
+    <p><a href="images/snowy1.JPG" target="_blank">snowy1.JPG</a></p>
+    <p><a href="images/sky1.JPG" target="_blank">sky1.JPG</a></p>
+  </div>
+</details>
+
+<script>
+  const images = [
+    { file: "images/sunrise1.JPG", desc: "A soft sunrise at Mt. Haleakala, Hawaii" },
+    { file: "images/waterfall1.JPG", desc: "Waterfall in Hawaii" },
+    { file: "images/blacksand1.JPG", desc: "Black Sand Beach, Hawaii" },
+    { file: "images/trees1.JPG", desc: "Helicopter view of Hawaii forest" },
+    { file: "images/terrain1.JPG", desc: "Rocky terrain of Mt. Haleakala" },
+    { file: "images/cave1.JPG", desc: "Inside view of a lava cave, Hawaii" },
+    { file: "images/bamboo1.JPG", desc: "A bamboo forest walk in Hawaii" },
+    { file: "images/terrain2.JPG", desc: "Interesting mountains of Hawaii" },
+    { file: "images/boat1.JPG", desc: "Tourist boat in Hawaii" },
+    { file: "images/sun1.JPG", desc: "Red Sun photo from the side of the road" },
+    { file: "images/acadialake1.JPG", desc: "A picture from my trip to Acadia National Park" },
+    { file: "images/fence1.JPG", desc: "A picture of my buddies backyard" },
+    { file: "images/creek1.JPG", desc: "A picture of a creek in the woods near my house" },
+    { file: "images/snowy1.JPG", desc: "Snow day photo; classes were cancelled" },
+    { file: "images/sky1.JPG", desc: "Vibrant sky colors at dusk" }
+  ];
+
+    let currentIndex = 0;
+
+    function updateGallery() {
+      document.getElementById("gallery-img").src = images[currentIndex].file;
+      document.getElementById("photo-description").innerText = images[currentIndex].desc;
+    }
+
+    function prevPhoto() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateGallery();
+    }
+
+    function nextPhoto() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateGallery();
+    }
+  </script>
+</body>
+</html>
